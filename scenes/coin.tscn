@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://bu1ert5usxmc7"]
+[gd_scene load_steps=18 format=3 uid="uid://bu1ert5usxmc7"]
 
 [ext_resource type="Texture2D" uid="uid://brgg2pyomrisf" path="res://assets/sprites/coin.png" id="1_bacyx"]
 [ext_resource type="Script" path="res://scripts/Coin.cs" id="1_hxumv"]
+[ext_resource type="AudioStream" uid="uid://b4t2mm1nrwflv" path="res://assets/sounds/coin.wav" id="3_bjaqd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pnipn"]
 atlas = ExtResource("1_bacyx")
@@ -109,4 +110,9 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v82nu")
 
+[node name="PickupSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_bjaqd")
+bus = &"SFX"
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="PickupSound" to="." method="_on_pickup_sound_finished"]
